@@ -30,29 +30,7 @@ Ensure you have `orjson` installed in your environment:
 pip install orjson
 ```
 
-## Usage Example
-
-```python
-import asyncio
-from typing import AsyncGenerator
-from main import parse_sse_stream
-
-# 1. Provide an async byte-stream (e.g., from an HTTP client like httpx or aiohttp)
-async def mock_byte_stream() -> AsyncGenerator[bytes, None]:
-    yield b'data: {"response": "Hello"}\n\n'
-    yield b'data: {"response": " world!"}\n\n'
-    yield b'data: [DONE]\n\n'
-
-async def main():
-    stream = mock_byte_stream()
-
-    # 2. Parse the stream
-    async for text_chunk in parse_sse_stream(stream):
-        print(text_chunk, end="", flush=True)
-
-if __name__ == "__main__":
-    asyncio.run(main())
-```
+Then, you can simply import the `parse_sse_stream` function from the module where it's defined.
 
 ## Real-World Usage: FastAPI & LLM Chat Streaming
 
@@ -73,14 +51,14 @@ async def generate_ai_response(prompt: str):
         # 1. Make a streaming request to an upstream LLM provider
         request_data = {"prompt": prompt, "stream": True}
         async with client.stream("POST", "https://api.example-llm.com/generate", json=request_data) as response:
-            
+
             # 2. Pass the byte stream directly into the parser
             # response.aiter_bytes() yields an AsyncGenerator[bytes, None]
             async for text_chunk in parse_sse_stream(response.aiter_bytes()):
-                
+
                 # (Optional) Log, intercept, or process the chunk here
                 print(f"Received chunk: {text_chunk}")
-                
+
                 # 3. Yield the pure text back to the client
                 yield text_chunk
 
