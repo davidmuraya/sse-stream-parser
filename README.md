@@ -4,7 +4,7 @@ A fast, lightweight, and correct Server-Sent Events (SSE) stream parser for Pyth
 
 ## Objective
 
-Parsing SSE streams—especially from large language model (LLM) APIs and real-time streaming services - can often be inefficient or fragile. `sse-stream-parser` exists to provide a highly optimized, low-overhead solution that strictly follows the SSE specification while seamlessly integrating with Python's `asyncio` ecosystem.
+Parsing SSE streams - especially from large language model (LLM) APIs and real-time streaming services - can often be inefficient or fragile. `sse-stream-parser` exists to provide a highly optimized, low-overhead solution that strictly follows the SSE specification while seamlessly integrating with Python's `asyncio` ecosystem.
 
 By taking an `AsyncGenerator[bytes, None]` and yielding parsed text chunks, it makes consuming low-level byte streams completely effortless.
 
