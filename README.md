@@ -1,6 +1,6 @@
-# sse-stream-parser
+# ⚡ High-Performance Async SSE Parser
 
-A fast, lightweight, and correct Server-Sent Events (SSE) stream parser for Python, designed specifically for async environments.
+An extremely fast, lightweight, and correct Server-Sent Events (SSE) stream parser for Python, designed specifically for async environments.
 
 ## Objective
 
@@ -29,8 +29,6 @@ Ensure you have `orjson` installed in your environment:
 ```bash
 pip install orjson
 ```
-
-*(Note: If this is published to PyPI as a package, you would simply run `pip install sse-stream-parser`)*
 
 ## Usage Example
 
